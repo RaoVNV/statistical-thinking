@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Generating Data from Models | Statistical Thinking: A Simulation Approach to Modeling Uncertainty</title>
-  <meta name="description" content="Generating Data from Models | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <title>Sampling Variation and the Bootstrap Test | Statistical Thinking: A Simulation Approach to Modeling Uncertainty</title>
+  <meta name="description" content="Sampling Variation and the Bootstrap Test | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Generating Data from Models | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
+  <meta property="og:title" content="Sampling Variation and the Bootstrap Test | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Generating Data from Models | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
+  <meta name="twitter:title" content="Sampling Variation and the Bootstrap Test | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
   
   
   
@@ -29,10 +29,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="modeling-simulation.html"/>
-<link rel="next" href="monte-carlo-simulation.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="prev" href="internal-validity-evidence-and-random-assignment.html"/>
+<link rel="next" href="external-validity-evidence-and-random-sampling.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -178,29 +178,44 @@ $(document).ready(function()
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="generating-data-from-models" class="section level1 unnumbered">
-<h1>Generating Data from Models</h1>
-<p>One core skill of a practicing statistician is to be able to generate random data from a model. Most of the models you will encounter in this course are referred to as <em>probability models</em>. That is just a fancy way of associating probabilities with different events, or outcomes, in a model.</p>
-<p>For example, the model of flipping a “fair” coin is a probability model. There are two events/outcomes in the model: heads and tails. Each of these outcomes has a probability of 0.5 associated with it. (Note that although we could say 50%, that probabilities are on the scale from 0 to 1, so are defined using decimal values.)</p>
-<p>In the in-class activity, <em>Generating Random Data—Cat Factory</em>, you will create several probability models to generate data about cats. To prepare for this activity, watch the <a href="http://www.tinkerplots.com/movies/probability-simulation">Probability Simulation</a> TinkerPlots™ tutorial video.</p>
+<div id="sampling-variation-and-the-bootstrap-test" class="section level1 unnumbered">
+<h1>Sampling Variation and the Bootstrap Test</h1>
+<p>In Unit 3, we discovered that, even under the null hypothesis of no group differences, group means from randomized studies vary because of experimental variation. That is, variation in the result occurs because of random assignment. Recall in Unit 2, that the chance variation was a function of the sampling process; different samples drawn from the population (model) produced different results. When results vary because of the sampling process, the chance variation is referred to as <strong>sampling variation</strong>.</p>
+<div id="sampling-variation" class="section level3 unnumbered">
+<h3>Sampling Variation</h3>
+<p>Some designs for group comparisons also are affected by sampling variation. For example, a study design that employs random sampling to obtain observations would inherently be affected by sampling variation. Consider the following study that examined whether baby names are getting shorter over time.</p>
+<blockquote>
+<p>The Social Security Administration (SSA) provides historical data on names for every baby born in the United States. Researchers used the population of all names that were included at least five times in the SSA database to randomly sample 25 names from babies born in 1945 and 25 names from babies born in 1995. The length (in letters) of each name was computed, and the two samples were compared.</p>
+</blockquote>
 <p><br /></p>
-<center>
-<iframe width="560" height="420" src="https://www.youtube.com/embed/udeuvbJKGeI" frameborder="0" allowfullscreen>
-</iframe>
-</center>
+<p><img src="img/babynames-data.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><br /></p>
+<p>The plot above shows the distribution of name length for the two samples. Babies born in 1995 have shorter names, on average, than babies born in 1945. Is this difference in means is 0.72. Is this difference evidence that baby names are getting shorter over time?</p>
+<p>In order to answer that question, we need to understand how much variation we expect in differences of means just because of chance. Here, chance is a function of the process of random sampling; note there is no random assignment to groups (year) in these data. Similar to the randomization test, we need to specify a “no difference” model and then simulate from it. But, in the simulation, we need to model the random sampling that was used to generate the data, not randomization to groups.</p>
+</div>
+<div id="bootstrapping" class="section level3 unnumbered">
+<h3>Bootstrapping</h3>
+<p>If we had the larger population of all baby names from 1945 and 1995, we could combine them all and draw two random samples of size 25 from this mega-population; one sample we label “1945”, and the other we label “1995”. (We combine the two populations because the hypothesized model of “no differences” implies that there is really only one population; no difference between the two populations). We could do this many times, each time collecting the difference in mean name lengths between the two samples. By plotting the difference in means, and computing the standard deviation of these differences, we could quantify the amount of variation we expect just because of sampling variation.</p>
+<p>Unfortunately, we do not have the population of baby names from 1945 and 1995. What we do have is a random sample of those names. So, we are going to combine the names from our two samples to form a “mega-population”. Then, we are going to draw two random samples of size 25 from this “mega-population”.</p>
+<p>Wait a minute. When we combined our two samples together, our “mega-population” was only 50 names big. If we draw two samples, each of size 25, from this “mega-population”, isn’t that all of the “mega-population”? If we do that, isn’t that the same thing as the randomization test? How does that allow us to model sampling error? After all, the randomization test helps model experimental error.</p>
+<p>All true. We can, however, model sampling error, with one twist. When we draw our 25 names for each sample from our “mega-population”, we sample WITH REPLACEMENT. In this way, we mimic drawing random samples from a larger population without actually needing the larger population. It is a really nifty method called <strong>bootstrapping</strong> developed by Brad Efron in the late 1970’s. Efron’s big discovery was that by bootstrapping (sampling with replacement) from a random sample, a person could come up with a good estimate of the sampling variation.</p>
+</div>
+<div id="outline-and-goals-of-unit-4" class="section level3 unnumbered">
+<h3>Outline and Goals of Unit 4</h3>
+<p>In the readings, course activities, and assignments in Unit 4, you will explore the process of modeling sampling variation to be able to evaluate observed differences between groups. You will learn about the bootstrap test (a Monte Carlo method for evaluating whether an observed result in compatible with sampling variation from a hypothesized model) and how to carry out this test using TinkerPlots™. You will also learn why random sampling helps provide validity evidence for generalizing results to the population (external validity evidence). Lastly, you will learn how to evaluate group differences from observational studies.</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="modeling-simulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="monte-carlo-simulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="internal-validity-evidence-and-random-assignment.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="external-validity-evidence-and-random-sampling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -240,6 +255,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
@@ -247,20 +266,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

@@ -74,16 +74,6 @@ To further help you understand ideas related to the standard error and the margi
 
 ### Outline and Goals of Unit 5 {-}
 
-The following schematic outlines the course readings, in-class activities, and assignments for Unit 5.
-
-<br />
-
-```{r out.width="50%", echo=FALSE, fig.align='left'}
-knitr::include_graphics("img/unit-05-outline.png")
-```
-
-<br />
-
 In the readings, course activities, and assignments in Unit 5, you will explore the use of bootstrapping to make statistical estimates using TinkerPlots&trade;. You will also learn about how sample size affects the precision/uncertainty of statistical estimates. Lastly, you will learn about the connections between hypothesis testing and estimation. 
 
 

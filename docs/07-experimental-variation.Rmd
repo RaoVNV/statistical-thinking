@@ -28,14 +28,4 @@ One key difference between this type of study and those in Unit 2 is that the ch
 
 ### Outline and Goals of Unit 3 {-}
 
-The following schematic outlines the course readings, in-class activities, and assignments for Unit 3.
-
-<br />
-
-```{r out.width="65%", echo=FALSE, fig.align='left'}
-knitr::include_graphics("img/unit-03-outline.png")
-```
-
-<br />
-
 In the readings, course activities, and assignments in Unit 3, you will explore the process of modeling experimental variation to be able to evaluate observed differences between groups. You will learn about the randomization test (a Monte Carlo method for evaluating whether an observed result in compatible with experimental variation from a hypothesized model) and how to carry out this test using TinkerPlots&trade;. 

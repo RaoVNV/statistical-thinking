@@ -11,16 +11,6 @@ Models have many purposes, but are primarily used to better understand phenomena
 
 ### Outline and Goals of Unit 1 {-}
 
-The following schematic outlines the course readings, in-class activities, and assignments for Unit 1.
-
-<br />
-
-```{r out.width="50%", echo=FALSE, fig.align='left'}
-knitr::include_graphics("img/unit-01-outline.png")
-```
-
-<br />
-
 In this unit, you will begin by exploring ideas of randomness. Randomness permeates, and is, in fact, fundamental to statistics. Then, you will learn how to use TinkerPlots&trade; to model several random processes and generate outcomes from those models. By generating data from different models, you will gain experience in considering the variation in outcomes that is produced by these random processes. This consideration will help you understand and overcome many misleading human intuitions about randomness.
 
 You will also be introduced to the Monte Carlo simulation process and learn how to carry out a Monte Carlo simulation using TinkerPlots&trade;. This process allows you to quickly generate multiple data sets from a model in order to carry out hypothetical experiments. For example, we could ask the question: How likely is it to rain three out of the five days on my vacation given a particular forecast? By modeling the forecast and repeatedly generating data for the five days of vacation, we can then answer this question. 

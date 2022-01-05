@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Observational Studies and the Bootstrap Test | Statistical Thinking: A Simulation Approach to Modeling Uncertainty</title>
-  <meta name="description" content="Observational Studies and the Bootstrap Test | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <title>Monte Carlo Simulation | Statistical Thinking: A Simulation Approach to Modeling Uncertainty</title>
+  <meta name="description" content="Monte Carlo Simulation | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Observational Studies and the Bootstrap Test | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
+  <meta property="og:title" content="Monte Carlo Simulation | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Observational Studies and the Bootstrap Test | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
+  <meta name="twitter:title" content="Monte Carlo Simulation | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
   
   
   
@@ -29,10 +29,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="validity-evidence-and-inferences.html"/>
-<link rel="next" href="estimating-uncertainty.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="prev" href="generating-data-from-models.html"/>
+<link rel="next" href="modeling-sampling-variation.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -178,58 +178,95 @@ $(document).ready(function()
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="observational-studies-and-the-bootstrap-test" class="section level1 unnumbered">
-<h1>Observational Studies and the Bootstrap Test</h1>
-<p>In some studies, researchers do not assign study participants to groups/conditions. One example of this is the second study described in <em>Validity Evidence and Conclusions: Peanut Allergies</em>. In this study, the two groups being compared, mothers that ate peanuts during pregnancy and mothers that did not eat peanuts during pregnancy, were not assigned by the researchers — they “self-selected” into the groups based on whether or not they ate peanuts during pregnancy. When the study participants are not assigned to conditions by a researcher the study is referred to as an <a href="http://atlasti.com/observational-research/">observational study</a>.</p>
-<p>Inferences a researcher can draw from an observational study are much weaker. Typically cause-and-effect conclusions cannot be made based on data collected from observational studies. This is because the possibility of alternative explanations always exists.</p>
-<p>Drawing causal conclusions from an observational study is misleading and can even be construed as unethical. In 1988, results released to the public from the National Household Survey on Drug Abuse created the false perception that crack cocaine smoking was related to ethnicity. The analysis, which was based on observational data (researchers cannot assign race) showed that the rates of crack use among blacks and Hispanics were twice as high as among whites. The data were re-analyzed in 1992 by researchers from Johns Hopkins University to take into account social factors such as where the users lived and how easily the drug could be obtained. They found that after adjusting for these factors, there were no differences among blacks, Hispanics and whites in the use of crack cocaine.</p>
-<div id="analyzing-data-from-observational-studies" class="section level3 unnumbered">
-<h3>Analyzing Data from Observational Studies</h3>
-<p>Although you probably won’t be able to draw a cause-and-effect inference, it is still useful to study and analyze observational data. Observational studies are often precursors to randomized studies— recall that one criteria of cause is that correlation exists, and observational data is a good for examining correlation.</p>
-<p>To analyze data from an observational study, researchers use similar methods as they use for data from a study in which the study participants were randomly assigned to groups. The key difference, however, is that the variation in results is not due to experimental variation. It turns out that the variation is more akin to sampling variation. This means we need to adapt our randomization test to account for sampling variation rather than experimental variation.</p>
-<p>To account for sampling variation in the randomization test, we change <code>replacement</code> option so that the <strong>outcome variable is sampled with replacement</strong>. Note that the group labels should still be sampled without replacement. (We want to model the same number of participants in each group as in any observational data.)</p>
-<p>Sampling the outcome values with replacement will increase the variation in the simulated results (larger standard deviation of the mean values). This increased variation is compatible with sampling from a larger population. Sampling with replacement from the observed data is called <strong>bootstrapping</strong>. Subsequently, this test is referred to as a <em>bootstrap test</em>. The table below shows a comparison of the randomization test and the bootstrap test.</p>
+<div id="monte-carlo-simulation" class="section level1 unnumbered">
+<h1>Monte Carlo Simulation</h1>
+<p>Monte Carlo simulation is one method that statisticians use to understand real-world phenomena. In Monte Carlo simulation, a model is used to generate multiple (sometimes millions) of data sets. By examining the data sets produced (or summaries of the data sets produced), researchers can draw insight about and predict what might happen in the real-world under a given set of circumstances. You can read about the fascinating origins of Monte Carlo simulation in the following article:</p>
+<ul>
+<li><a href="http://www.webpages.uidaho.edu/~stevel/565/literature/The%20Beginning%20of%20Monte%20Carlo%20Method.pdf">The Beginning of the Monte Carlo Method</a></li>
+</ul>
+<div id="example-of-a-monte-carlo-simulation-study" class="section level3 unnumbered">
+<h3>Example of a Monte Carlo Simulation Study</h3>
+<p>In 1978, China introduced the “one-child” policy in order to alleviate social, economic, and environmental problems in China. According to Wikipedia,<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<blockquote>
+<p>The policy officially restricts the number of children married urban couples can have to one, although it allows exemptions for several cases, including rural couples, ethnic minorities, and parents without any siblings themselves. A spokesperson of the Committee on the One-Child Policy has said that approximately 35.9% of China’s population is currently subject to the one-child restriction.</p>
+</blockquote>
+<p>Although the Chinese government has suggested that the policy has prevented more than 250 million births from its implementation to 2000, the policy is controversial both within and outside of China because of the manner in which the policy has been implemented. There have also been concerns raised about potential negative economic and social consequences, in part because many families were determined to have a son. Scholars have wondered how things would change if instead of a one-child policy, a country adopted a “one son” policy. A “one son” policy would allow families to keep having children until they had a son. If a family’s first child is a boy, they would be restricted from having more children. If, however, the first child was a daughter, the family could continue having children until a son was born. For example, they might ask the question,</p>
+<!-- <div class="image"> -->
+<!--   <img src="img/speech-bubble.png" /> -->
+<!--   <span class="oval-thought" style="margin-top:20px;"><center><span style="font-size: .9em;">If China adopted a "one son" policy, how would the policy <br /> affect the average number of children per family, which is currently 1.6^[[World Factbook](https://www.cia.gov/library/publications/the-world-factbook/fields/2127.html)]?</span></center></span> -->
+<!-- </div> -->
+<center>
+<blockquote class="oval-thought">
+<p>
+<br />If China adopted a “one son” policy, how would the policy affect the average number of children per family, which is currently 1.6?<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a><br /><br />
+</p>
+</blockquote>
+</center>
+<p><br /></p>
+<p>One way in which this question could be studied (without actually implementing the policy) would be to conduct a simulation study by modeling this situation and generating many data sets from the model. Consider for a minute how you might model the number of children a particular family would have.</p>
+<p>One way to model this is to write the word <strong>boy</strong> on one index card and the word <strong>girl</strong> on another index card and to place those two index cards in a hat. After mixing up the index cards, you could draw a single card from the hat. If the card has the word <strong>boy</strong> written on it, the simulated “family” would be reported to have one child. If the card has the word <strong>girl</strong> written on it, a tally mark could be recorded and the index card would be replaced in the hat. The cards could then be remixed and another card would be drawn. If the second card drawn has the word <strong>boy</strong> written on it, the simulated “family” would be reported to have two children. If the second card has the word <strong>girl</strong> written on it, another tally mark could be recorded and the index card would again be replaced in the hat. This process would continue until the <strong>boy</strong> card was drawn. The table below shows the results after carrying out this process for three simulated families.</p>
 <p><br /></p>
 <table>
-<colgroup>
-<col width="9%" />
-<col width="14%" />
-<col width="75%" />
-</colgroup>
+<caption><span id="tab:unnamed-chunk-1">Table 1: </span>The recorded number of girls and boys for three simulated families.</caption>
 <thead>
 <tr class="header">
-<th>Test</th>
-<th>Variation Modeled</th>
-<th>TinkerPlots™</th>
+<th align="left">Family</th>
+<th align="left">Girl</th>
+<th align="left">Boy</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Randomization</td>
-<td>Experimental variation</td>
-<td>Two sampling devices: <br />  (1) outcomes (sampled without replacement); and <br />  (2) group labels (sampled without replacement)</td>
+<td align="left">Family #1</td>
+<td align="left">✔</td>
+<td align="left">✔</td>
 </tr>
 <tr class="even">
-<td>Bootstrap</td>
-<td>Sampling variation</td>
-<td>Two sampling devices: <br />  (1) outcomes (sampled with replacement); and <br />  (2) group labels (sampled without replacement)</td>
+<td align="left">Family #2</td>
+<td align="left"></td>
+<td align="left">✔</td>
+</tr>
+<tr class="odd">
+<td align="left">Family #3</td>
+<td align="left">✔✔</td>
+<td align="left">✔</td>
 </tr>
 </tbody>
 </table>
+<p><br /></p>
+<p>We could carry out this simulation for many families, say 500 families, and use the results to provide an answer to the research question. You can imagine that carrying out even this simple simulation would quickly become quite tedious. Simulation studies, such as this, are typically carried out using computer programs. In this unit, you will learn to use a computer program called TinkerPlots™ to model processes in the real-world and carry out simulation studies.</p>
+</div>
+<div id="monte-carlo-simulation-assumptions" class="section level3 unnumbered">
+<h3>Monte Carlo Simulation Assumptions</h3>
+<p>“Wait,” you say. “Even if I carried out this simulation, I still would not be able to provide an answer to the research question! It doesn’t reflect reality! Some families may not want to have any children, while others might be happy to stop after a girl was born. What about multiple births?”</p>
+<p>Maybe you are even questioning whether the probability of having a boy or having a girl is really 50:50. These are all valid points, and all would likely affect the results of the simulation, which in turn affects the inferences and conclusions that are drawn.</p>
+<p>While the model used in the “one son” example is overly simplistic for drawing any sorts of meaningful conclusions about implementing such a policy in China, it could, however, provide a useful starting point for introducing additional complexity. Even in the most enormously complicated modeling problem, researchers often make many simplifying assumptions. (Remember that all models—even those that seem quite complex—are simplifications of reality and get many things wrong.) With enough simplification, a model can be constructed and studied. The model is evaluated and often revised or updated as certain assumptions are deemed tenable and others are not. Because of this process, simulation studies are generally iterative in their development. This iteration process continues until an adequate level of understanding is developed and the research question can be answered.</p>
+</div>
+<div id="monte-carlo-simulation-in-practice" class="section level3 unnumbered">
+<h3>Monte Carlo Simulation in Practice</h3>
+<p>In practice, statisticians often use incredibly complex models to generate their data. As an example, Electronic Arts, the video game company behind titles such as <em>Madden</em>, <em>NHL</em> and <em>FIFA</em>, uses game telemetry (the transmission of data from a game executable for recording and analysis) to model the gameplay patterns of players and identify the elements of their games that are highly correlated with player retention.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
+<p>By understanding the behavior of players and the common patterns that are used, Electronic Arts game developers can focus their attention on more relevant features in future iterations of the game and ultimately reduce production costs. For example, in their examination of <em>Madden NFL 11</em>, Electronic Arts used 46 features to model players’ preferences, including their control usage, performance, and play-calling style. This is but one example of using simulation in video games.</p>
 
 </div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="4">
+<li id="fn4"><p>One-child policy. (2015, May 30). In Wikipedia, The Free Encyclopedia. Retrieved 18:02, June 1, 2015, from <a href="http://en.wikipedia.org/w/index.php?title=One-child_policy&amp;oldid=664745432">http://en.wikipedia.org/w/index.php?title=One-child_policy&amp;oldid=664745432</a><a href="monte-carlo-simulation.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p><a href="https://www.cia.gov/library/publications/the-world-factbook/fields/2127.html">World Factbook</a><a href="monte-carlo-simulation.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>Weber, B. G., John, M., Mateas, M., &amp; Jhala, A. (2011). <em>Modeling player retention in Madden NFL 11.</em> Presented at Innovative Applications of Artificial Intelligence. <a href="http://users.soe.ucsc.edu/~bweber/pubs/madden11retention.pdf">http://users.soe.ucsc.edu/~bweber/pubs/madden11retention.pdf</a><a href="monte-carlo-simulation.html#fnref6" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="validity-evidence-and-inferences.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="estimating-uncertainty.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="generating-data-from-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modeling-sampling-variation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -269,6 +306,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
@@ -276,20 +317,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

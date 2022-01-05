@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>External Validity Evidence and Random Sampling | Statistical Thinking: A Simulation Approach to Modeling Uncertainty</title>
-  <meta name="description" content="External Validity Evidence and Random Sampling | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <title>Statistical Thinking: A Simulation Approach to Modeling Uncertainty</title>
+  <meta name="description" content="Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="External Validity Evidence and Random Sampling | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
+  <meta property="og:title" content="Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="External Validity Evidence and Random Sampling | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
+  <meta name="twitter:title" content="Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
   
   
   
@@ -29,10 +29,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="sampling-variation-and-the-bootstrap-test.html"/>
-<link rel="next" href="validity-evidence-and-inferences.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+
+<link rel="next" href="introduction.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -178,51 +178,51 @@ $(document).ready(function()
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="external-validity-evidence-and-random-sampling" class="section level1 unnumbered">
-<h1>External Validity Evidence and Random Sampling</h1>
-<p>In statistical inference, generalization refers to the process of using sample data to draw conclusions about the larger population from which the sample was drawn. The sample data provides statisticians with an estimate of the exact “truth” about the population. For example, data collected from 1,000 Americans about their voting preferences may be used to infer the voting preferences of Americans in general. Statisticians are typically concerned with making inferences about some summary measure of the population, a mean or population percentage. (<em>Some vocabulary:</em> Population summary measures are called <strong>parameters</strong>. Sample estimates of parameters are referred to as <strong>statistics</strong>.)</p>
-<p>How useful is a sample statistic when it comes to estimating a population parameter? Can we draw reasonable inference about a population from sample data? This question is at the heart of weighing evidence about external validity. External validity is the degree to which generalizations to the larger population are accurate and meaningful.</p>
-<p>There are two statistical aspects we need to consider when we evaluate evidence for external validity: sampling variation and bias. Sampling variation is the idea that statistics from different samples vary. For example, to use the earlier example, different samples of 1,000 Americans would produce different estimates of voting preferences. This variation needs to be accounted for when estimates are given. One way of thinking about sampling variation is to map it to the quality of precision. (We will focus more on this in Unit 5.)</p>
-<p>The second statistical characteristic we need to attend to is bias. Statistical bias is when sample statistics differ systematically from the population parameter. The key here is the word “systematically”. This implies that there is something in the underlying process (aside from random variation) that is affecting the estimation process.</p>
-<div id="statistical-bias" class="section level3 unnumbered">
-<h3>Statistical Bias</h3>
-<p>To help you think about bias, imagine a person, Arthur Dent, has lost his keys. The actual location of the keys, the Library, is akin to the population parameter. Arthur believes he lost his keys at the Supermarket and searches several places around the Supermarket. The locations where Arthur searches are like sample statistics.</p>
-<p><br /></p>
-<div class="figure" style="text-align: center"><span id="fig:bias-keys"></span>
-<img src="img/bias-keys.png" alt="This figure is a metaphor for statistical bias." width="70%" />
-<p class="caption">
-Figure 5: This figure is a metaphor for statistical bias.
-</p>
+<div id="header">
+<h1 class="title">Statistical Thinking: A Simulation Approach to Modeling Uncertainty</h1>
+<p class="author"><em></em></p>
 </div>
+<div id="front-matter" class="section level1 unnumbered">
+<h1>Front Matter</h1>
+<p><img src="img/catalst-textbook-cover-v4_3.png" width="25%" style="display: block; margin: auto;" /></p>
 <p><br /></p>
-<p>Figure <a href="external-validity-evidence-and-random-sampling.html#fig:bias-keys">5</a> is a metaphor for the concept of statistical bias. Arthur’s search locations (sample statistics) are systematically in the wrong place. On average, where Arthur searched (the middle of the yellow circle) is not the actual location of the keys. Compare this with the search locations in Figure <a href="external-validity-evidence-and-random-sampling.html#fig:unbiased-keys">6</a>.</p>
+<p>This website is intended to serve as an organizational hub for the following course:</p>
+<ul>
+<li>University of Minnesota, Spring 2022, EPSY 3264, Section 002</li>
+</ul>
+<p>This website is based on the most current version of the CATALST Project’s <em>Statistical Thinking: A Simulation Approach to Modeling Uncertainty</em>. Here you will be able to access materials such as readings, data sets, and the lab manual. The website also includes helpful links and resources for each of the course topics.</p>
 <p><br /></p>
-<div class="figure" style="text-align: center"><span id="fig:unbiased-keys"></span>
-<img src="img/unbiased-keys.png" alt="This figure is a metaphor for unbiasedness." width="70%" />
-<p class="caption">
-Figure 6: This figure is a metaphor for unbiasedness.
-</p>
+<p>The resources that accompany this website include:</p>
+<ul>
+<li>A lab manual <a href="https://github.com/RaoVNV/statistical-thinking/blob/master/statistical-thinking-v4_3_Rao.pdf?raw=true">PDF copy available here</a></li>
+<li>Data sets used in the lab manual:
+<ul>
+<li><a href="https://github.com/zief0002/statistical-thinking/blob/master/tp3-data.zip?raw=true">TinkerPlots 3 Data Files</a></li>
+</ul></li>
+</ul>
+<p>You can read more about these resources in the introduction.</p>
+<p><br /></p>
+<div id="licensing-and-attribution" class="section level3 unnumbered">
+<h3>Licensing and Attribution</h3>
+<p>Copyright © 2021 Catalysts for Change</p>
+<p>PUBLISHED BY CATALYST PRESS</p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a></p>
+<p>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. You are free to share, remix, and make commercial use of the work under the condition that you provide proper attribution. To reference this work, use:</p>
+<ul>
+<li>Zieffler, A., &amp; Catalysts for Change. (2021). <em>Statistical Thinking: A simulation approach to uncertainty</em> (4.3th ed.). Minneapolis, MN: Catalyst Press. <a href="http://zief0002.github.io/statistical-thinking/">http://zief0002.github.io/statistical-thinking/</a></li>
+</ul>
+<p>The work to create the material appearing in the book was made possible by the National Science Foundation (DUE–0814433).</p>
+<p>The material on this website and in the lab manual is a direct reflection of the ideas, work, and effort of several Catalysts for Change. They include (alphabetically): Ethan Brown, Jonathan Brown, Dan Butler, Tony Casci, Beth Chance, George Cobb, Robert delMas, Katherine Edwards, Michelle Everson, Jeffrey Finholm, Chris Fiscus, Elizabeth Fry, Joan Garfield, Theresa Gieschen, Meg Goerdt, Robert Gould, Adam Gust, Melissa Hanson, John Holcomb, Michael Huberty, Rebekah Isaak, Kari Johnson, Nicola Justice, Laura Le, Chelsey Legacy, Regina Lisinker, Suzanne Loch, Matthew Mullenbach, Michael Nguyen, Amy Okan, Vimal Rao, Allan Rossman, Anelise Sabbag, Andrew Zieffler, and Laura Ziegler</p>
+<p>Additionally, some of the activities presented in the lab manual were originally developed by Beth Chance, George Cobb, John Holcomb, and Allan Rossman as part of their NSF-funded project <a href="http://statweb.calpoly.edu/csi/">Concepts of Statistical Inference: A Randomization-Based Curriculum</a> (NSF CCLI- DUE-0633349).</p>
+<p><br /></p>
 </div>
-<p><br /></p>
-<p>Figure <a href="external-validity-evidence-and-random-sampling.html#fig:unbiased-keys">6</a> is a metaphor for unbiasedness. On average, where Arthur searched is the location of the keys. There are a couple of other concepts that this metaphor can help us think about.</p>
-<ol style="list-style-type: decimal">
-<li><p>Even in Figure <a href="external-validity-evidence-and-random-sampling.html#fig:unbiased-keys">6</a>, none of the actual search locations were right at the keys. Some of the locations were too far to the left of the keys, and others were too far to the right of the keys. However, ON AVERAGE, the search locations “found” the keys. The way we define unbiased is that the AVERAGE of the statistics is at the population parameter.</p></li>
-<li><p>Average has nothing to do with the size of the yellow circle. (The size of the circle is related to the amount of sampling variation, a concept we will deal with in Unit 5.) The two figures below also illustrate unbiasedness (left) and bias (right), despite the size of the yellow circle.</p></li>
-</ol>
-<div style="float: left; margin-right: 5px;">
-<p><img src="img/unbiased-keys-02.png" width="45%" />
-<img src="img/bias-keys-02.png" width="45%" /></p>
-</div>
-<div style="clear: both;">
-<ol start="3" style="list-style-type: decimal">
-<li>The last concept about bias to point out is that bias (or unbiasedness) is a property of the sampling method. The reason the search locations were not in the right place is because the method Arthur used to pick the search locations was biased. He thought he lost his keys in the Supermarket, so that is where he looked.</li>
-</ol>
-</div>
-<p>An unbiased sampling method is random sampling. Random sampling uses chance to select the sampling units (participants) from the larger population. When random sampling has been employed in a study, the unbiasedness of the sampling method is strong evidence for external validity; we have a much higher belief in generalizations to the larger population. In our validity barometer we would be in the upper-third (depending on other factors such as sample size).</p>
-<p><br /></p>
-<p><img src="img/external-validity-evidence-barometer.png" width="70%" style="display: block; margin: auto;" /></p>
-<p><br /></p>
-<p>In this course, we will discuss and utilize <a href="https://en.wikipedia.org/wiki/Simple_random_sample">simple random sampling</a>. To draw a simple random sample we need a list of EVERY member of the population. This list is called the <em>sampling frame</em>. (Obtaining a sampling frame can be very difficult. Try obtaining a list of everyone who lives in the United States!) Then we employ randomness to draw out sampling units, with the caveat that each unit in the sampling frame has an equal chance of being drawn.</p>
+<div id="colophon" class="section level3 unnumbered">
+<h3>Colophon</h3>
+<p>There are two <a href="https://fonts.google.com/">Google Fonts</a> used on the website. The headings use <a href="https://fonts.google.com/specimen/Playfair+Display">Playfair Display</a> and the display text is <a href="https://fonts.google.com/specimen/Alegreya">Alegreya</a>.</p>
+<p>Icons used on the website are:</p>
+<ul>
+<li><a href="https://thenounproject.com/iconproducer/collection/keys/?oq=key&amp;cidx=0&amp;i=713748">Key</a> by Iconic from the <a href="https://thenounproject.com/">Noun Project</a></li>
+</ul>
 
 </div>
 </div>
@@ -231,12 +231,11 @@ Figure 6: This figure is a metaphor for unbiasedness.
           </div>
         </div>
       </div>
-<a href="sampling-variation-and-the-bootstrap-test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="validity-evidence-and-inferences.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
+<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -276,6 +275,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
@@ -283,20 +286,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

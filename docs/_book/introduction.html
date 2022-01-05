@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Quantifying Results: p-Value | Statistical Thinking: A Simulation Approach to Modeling Uncertainty</title>
-  <meta name="description" content="Quantifying Results: p-Value | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <title>Introduction | Statistical Thinking: A Simulation Approach to Modeling Uncertainty</title>
+  <meta name="description" content="Introduction | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Quantifying Results: p-Value | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
+  <meta property="og:title" content="Introduction | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Quantifying Results: p-Value | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
+  <meta name="twitter:title" content="Introduction | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
   
   
   
@@ -29,10 +29,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="experimental-variation-and-the-randomization-test.html"/>
-<link rel="next" href="internal-validity-evidence-and-random-assignment.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="modeling-simulation.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -178,61 +178,39 @@ $(document).ready(function()
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="quantifying-results-p-value" class="section level1 unnumbered">
-<h1>Quantifying Results: p-Value</h1>
-<p>In addition to computing the range of likely results from the model, statisticians also typically provide a quantification of the likelihood of the observed result given the hypothesized model. This quantification is referred to as a <span class="math inline">\(p\)</span>-value (the <span class="math inline">\(p\)</span> stands for probability).</p>
-<p>To compute a <span class="math inline">\(p\)</span>-value, you count the number of results that are at least as extreme as the observed result, and divide this by the total number of results.</p>
-<p><span class="math display">\[
-p = \frac{\mathrm{number~of~results~at~least~as~extreme~as~observed~result}}{\mathrm{total~number~of~simulated~results}}
-\]</span></p>
-<p>This value is then reported as a decimal value. It quantifies the probability of observing a result at least as extreme as the observed result under the hypothesized model.</p>
-<p>To illustrate this, we will re-examine simulation results from the <em>Sleep Deprivation</em> study. Recall in that activity, the observed data had a difference in means of 15.9. Below is a plot of 100 differences in means simulated under the “no-effect”" model. A vertical line is shown at the observed difference of 15.9.</p>
-<p><img src="img/sleep-deprivation-simulation.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Since 15.9 is to the right of 0 (i.e., it is on the right-hand side of the plot) results that are <em>more extreme than the observed result</em> are to the right of 15.9. (If the observed result was to the left of 0, more extreme results would be those more negative than the observed result.) Here there are two simulated results out of 100 that are at least as extreme as 15.9 (<span class="math inline">\(\geq 15.9\)</span>). We would report the <span class="math inline">\(p\)</span>-value as 0.02.</p>
-<div id="adjustment-for-simulation-results" class="section level3 unnumbered">
-<h3>Adjustment for Simulation Results</h3>
-<p>In simulation studies, we make one small adjustment to the <span class="math inline">\(p\)</span>-value computation; we add 1 to both the numerator and denominator:</p>
-<p><span class="math display">\[
-p = \frac{\mathrm{number~of~results~more~extreme~than~observed} + 1}{\mathrm{total~number~of~simulated~results} + 1}
-\]</span></p>
-<p>This adjustment assures that we never get a <span class="math inline">\(p\)</span>-value of 0. Consider the <span class="math inline">\(p\)</span>-value if our observed result would have been 18 (instead of 15.9). There are 0 results that are at least as extreme as 18 (<span class="math inline">\(\geq 18\)</span>). Without making the simulation adjustment, we would report a <span class="math inline">\(p\)</span>-value of 0. This implies that seeing a result at least as extreme as 18 under the “no-effect” model is impossible. The problem is that we only ran 100 trials of the simulation. If we had run this simulation for all possible randomizations of the data, we would have seen results <span class="math inline">\(\geq 18\)</span>. So, to report a <span class="math inline">\(p\)</span>-value of 0 is misleading. The <span class="math inline">\(p\)</span>-value we report should be,</p>
-<p><span class="math display">\[
-p = \frac{0 + 1}{100 + 1} = 0.0099
-\]</span></p>
-<p>After the adjustment, the <span class="math inline">\(p\)</span>-value is still quite small, indicating that had we seen an observed result of 18, we would say that it is inconsistent with the model of “no-effect”. In fact it is in the outer 0.01 (1%) of the results simulated from the hypothesized model.</p>
-<p>Going back to the <span class="math inline">\(p\)</span>-value computed from the observed value of 15.9,</p>
-<p><span class="math display">\[
-p = \frac{2 + 1}{100 + 1} = 0.0297
-\]</span></p>
-<p>We can interpret the <span class="math inline">\(p\)</span>-value of 0.030 as indicating that the observed difference of 15.9 is in the outer 0.03 (3%) of results simulated from the hypothesized model. It is quite unlikely that we would see a result as extreme as 15.9, or more extreme, under the hypothesized model of “no effect”.</p>
+<div id="introduction" class="section level1 unnumbered">
+<h1>Introduction</h1>
+<p>Learning statistics is sexy. Hal Varian, Google’s chief economist, believes this. During an <a href="http://www.mckinsey.com/industries/high-tech/our-insights/hal-varian-on-how-the-web-challenges-managers">interview in McKinsey Quarterly</a>, Varian stated, “I keep saying the sexy job in the next ten years will be statisticians. People think I’m joking, but who would’ve guessed that computer engineers would’ve been the sexy job of the 1990s?” Varian is not the only person to express this sentiment either. Hans Rosling in the 2010 BBC documentary Joy of Stats<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> referred to statistics as the “sexiest subject around”.</p>
+<p>Whether you believe it is the sexiest subject or not, it is incontrovertible that the use of statistics and data are prevalent in today’s information age. Almost every person on earth will benefit from learning some foundational ideas of statistics. This is true because statistics forms the basis of our everyday world just as much as do science, technology, and politics. Google, Netflix, Twitter, Facebook, OKCupid, Match.com, Amazon, iTunes, and the Federal Government are just a handful of the companies and organizations that use statistics on a daily basis. Journalism, political science, biology, sociology, psychology, graphic design, economics, sports science, and dance are all disciplines that have made use of statistical methodology.</p>
+<div id="course-material" class="section level3 unnumbered">
+<h3>Course Material</h3>
+<p>The materials on this website and in the lab manual will introduce you to the seminal ideas underlying the discipline of statistics. In addition, they have been designed with your learning in mind. For example, many of the class activities were developed using pedagogical principles, such as small group activities and discussion, that have been shown in research to improve student learning.</p>
+<p>Course readings should be completed outside of class and are intended to help you learn and extend the ideas, skills, and concepts you learn in the classroom. The readings themselves are not all “traditional” readings in the sense of words written on the screen, but instead often link to video clips, blogs and other multimedia material.</p>
 </div>
-<div id="p-values-as-evidence" class="section level3 unnumbered">
-<h3>p-Values as Evidence</h3>
-<p>Large <span class="math inline">\(p\)</span>-values indicate that the observed data are more compatible with the results from the model, while small <span class="math inline">\(p\)</span>-values indicate that the observed data are not very compatible with the results from the model. As researchers, our goal is often to then translate this quantitative evidence into support for the hypothesized model. For example, in the <em>Sleep Deprivation</em> study, we obtained a <span class="math inline">\(p\)</span>-value of 0.03. This suggests a low degree of compatibility between the observed data (our empirical evidence) and the hypothesized model of “no effect”.</p>
-<p>The broader scientific question about whether sleep deprivation has a harmful effect on learning, however is difficult to ascertain from a <span class="math inline">\(p\)</span>-value. There are no hard-and-fast rules for gauging how strong the evidence is against the hypothesized model because what counts as evidence in one scientific discipline or context may not count in another scientific discipline or context. And, even if there were rules about the degree of evidence needed, you would still need to evaluate other criteria such as internal and external validity evidence, and sample size. Even then, the results from a single study are not typically convincing enough for most scientists to draw definitive conclusions. It is only through consistent findings that emerge from multiple studies (which may take decades) that we may have convincing evidence about the answer to the broader scientific question.</p>
+<div id="tinkerplots-software" class="section level3 unnumbered">
+<h3>TinkerPlots™ Software</h3>
+<p>Much of the material presented in the lab manual requires the use of TinkerPlots™. This software can be downloaded (for Mac or PC), and a license can be purchased from <a href="http://www.tinkerplots.com/">http://www.tinkerplots.com/</a>. If you have a Mac and are running a new version of the OS, download the <a href="ttp://www.tinkerplots.com/beta">most recent beta version</a> of TinkerPlots3.</p>
 </div>
-<div id="six-principles-about-p-values" class="section level3 unnumbered">
-<h3>Six Principles about p-Values</h3>
-<p>Because they are so ubiquitous in the research literature for any field, and because they are often mis-interpreted (even by PhDs, researchers, and math teachers) it is important to be aware of what a <span class="math inline">\(p\)</span>-value tells you, and more importantly, what it doesn’t tell you. To this end, the American Statistical Association released a <a href="http://amstat.tandfonline.com/doi/abs/10.1080/00031305.2016.1154108#.Vt2XIOaE2MN">statement on <span class="math inline">\(p\)</span>-values</a> in which it listed six principles:<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
+<div id="lab-manual-and-data-sets" class="section level3 unnumbered">
+<h3>Lab Manual and Data Sets</h3>
+<p>You will work from the lab manual every day in class. As such, you will need to bring a copy of the lab manual (physical or electronic) with you to class every day. To download a PDF copy of the lab manual, click this link: <a href="https://github.com/RaoVNV/statistical-thinking/raw/master/statistical-thinking-v4_4.pdf">University of Minnesota - Spring 2022 - EPSY 3264 Section 002</a>.</p>
+<p>There are several data sets used in the lab manual, as well as in EPsy 3264 assignments. To download a ZIP file to your computer that includes all the data sets, click the link below. Once the ZIP file has been downloaded to your computer, double-click the ZIP file to unzip it and access the materials.</p>
 <ul>
-<li><strong>Principle 1:</strong> <span class="math inline">\(P\)</span>-values can indicate how incompatible the data are with a specified statistical model.</li>
-<li><strong>Principle 2:</strong> <span class="math inline">\(P\)</span>-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.</li>
-<li><strong>Principle 3:</strong> Scientific conclusions and business or policy decisions should not be based only on whether a <span class="math inline">\(p\)</span>-value passes a specific threshold.</li>
-<li><strong>Principle 4:</strong> Proper inference requires full reporting and transparency.</li>
-<li><strong>Principle 5:</strong> A <span class="math inline">\(p\)</span>-value does not measure the size of an effect or the importance of a result.</li>
-<li><strong>Principle 6:</strong> By itself, a <span class="math inline">\(p\)</span>-value does not provide a good measure of evidence regarding a model or hypothesis.</li>
+<li><a href="https://github.com/zief0002/statistical-thinking/blob/master/tp3-data.zip?raw=true">TinkerPlots 3 Data Files</a></li>
 </ul>
-<!-- Principle 3 is especially poignant, as many reserachers use the criterion of 0.05 when evaluating $p$-values to indicate whether a result is statistically significant ($p \leq 0.05$) or not. In fact, this use was so pervasive and problematic, that the journal *Basic and Applied Social Psychology* [banned the use of $p$-values](http://www.nature.com/news/psychology-journal-bans-p-values-1.17001) in its published articles. It also led to many jokes about $p$-values, including this [XKCD](https://xkcd.com) comic. -->
-<!-- <center> -->
-<!-- ![](https://imgs.xkcd.com/comics/p_values.png) -->
-<!-- </center> -->
+</div>
+<div id="participation-in-the-learning-process" class="section level3 unnumbered">
+<h3>Participation in the Learning Process</h3>
+<p>The lab manual, instructors, and teaching assistants are all resources that are at your disposal to help you learn the material. In the end, however, you will have to do all of the hard work associated with actually learning that material. To successfully navigate this process, it is vital that you be an active participant in the learning process. Coming to class, participating in the activities and discussions, reading, completing the assignments, and asking questions are essential to successful learning.</p>
+<p>Learning anything new takes time and effort and this is especially true of learning statistics, as you are not just learning a set of methods, but rather a disciplined way of thinking about the world. Changing your habits of mind will take continual practice. It will also take a great deal of patience and persistence.</p>
+<p>As you engage in and use the skills, concepts and ideas introduced in the material, you will find yourself thinking about data and evidence in a different way. This may lead you to make different decisions or choices. But, even if this course does not change your world overnight, you will at the very least be able to critically think about inferences and conclusions drawn from data.</p>
 
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="12">
-<li id="fn12"><p>Yaddanapudi (2016) <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5187603/">published a paper</a> in the <em>Journal of Anaesthesiology, Clinical Pharmacology</em> in which she explains each of these six principles for practicing physician-scientists using an example of treatment efficacy for a drug.<a href="quantifying-results-p-value.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<ol start="1">
+<li id="fn1"><p>Watch <em>Joy of Stats</em> online at <a href="http://www.gapminder.org/videos/the-joy-of-stats/">http://www.gapminder.org/videos/the-joy-of-stats/</a><a href="introduction.html#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -240,12 +218,11 @@ p = \frac{2 + 1}{100 + 1} = 0.0297
           </div>
         </div>
       </div>
-<a href="experimental-variation-and-the-randomization-test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="internal-validity-evidence-and-random-assignment.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modeling-simulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -285,6 +262,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
@@ -292,20 +273,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

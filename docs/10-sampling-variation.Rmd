@@ -43,14 +43,4 @@ All true. We can, however, model sampling error, with one twist. When we draw ou
 
 ### Outline and Goals of Unit 4 {-}
 
-The following schematic outlines the course readings, in-class activities, and assignments for Unit 4.
-
-<br />
-
-```{r out.width="50%", echo=FALSE, fig.align='left'}
-knitr::include_graphics("img/unit-04-outline.png")
-```
-
-<br />
-
 In the readings, course activities, and assignments in Unit 4, you will explore the process of modeling sampling variation to be able to evaluate observed differences between groups. You will learn about the bootstrap test (a Monte Carlo method for evaluating whether an observed result in compatible with sampling variation from a hypothesized model) and how to carry out this test using TinkerPlots&trade;. You will also learn why random sampling helps provide validity evidence for generalizing results to the population (external validity evidence). Lastly, you will learn how to evaluate group differences from observational studies.

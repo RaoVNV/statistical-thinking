@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Describing Distributions | Statistical Thinking: A Simulation Approach to Modeling Uncertainty</title>
-  <meta name="description" content="Describing Distributions | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <title>Modeling Sampling Variation | Statistical Thinking: A Simulation Approach to Modeling Uncertainty</title>
+  <meta name="description" content="Modeling Sampling Variation | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Describing Distributions | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
+  <meta property="og:title" content="Modeling Sampling Variation | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Describing Distributions | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
+  <meta name="twitter:title" content="Modeling Sampling Variation | Statistical Thinking: A Simulation Approach to Modeling Uncertainty" />
   
   
   
@@ -29,10 +29,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="modeling-sampling-variation.html"/>
-<link rel="next" href="experimental-variation-and-the-randomization-test.html"/>
-<script src="libs/header-attrs-2.9/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="prev" href="monte-carlo-simulation.html"/>
+<link rel="next" href="describing-distributions.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -40,7 +41,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
 
 
 
@@ -178,89 +178,57 @@ $(document).ready(function()
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="describing-distributions" class="section level1 unnumbered">
-<h1>Describing Distributions</h1>
-<p>One of the important steps in any statistical analysis is that of summarizing data. It is good practice to examine both a graphical and a numerical summarization of your data. These summaries are often part of the evidence that researchers use to support any conclusions drawn from the data. They also allow researchers to discover structure that might have otherwise been overlooked in the raw data that was actually collected. Lastly, both graphical and numerical summaries of the data often point to other analyses that may be undertaken with the data.</p>
-<p>Once raw data has been collected in a study, it can be overwhelming to pull any kind of meaning out of it. For example, it is not uncommon for Google to be dealing with millions of cases. How can Google—or any researcher for that matter—go from all of that raw data to something that can help them answer their research questions?</p>
-<p>Rather than examining all of those cases individually, researchers examine the data collectively, often by plotting it. This is what is meant by a graphical summary of the data; it is quite literally, a picture of the distribution.</p>
-<p>There are many, many different types of plots that have been created to graphically summarize data. Each can provide a slightly different representation of the data. Metaphorically, you can imagine each of these different plot types as a different photo taken of the exact same person. Some may be color, others black and white. Some may be taken from different perspectives, angles or distances. While all photographs “summarize” the same person, you may notice characteristics of that person in some photos that are not evident in others. Many of the photos, however, will show the same thing.</p>
-<div id="shape" class="section level3 unnumbered">
-<h3>Shape</h3>
-<p>The dot plot that TinkerPlots™ provides is a very useful plot.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> It allows us to summarize the shape of the distribution very easily. Shape is used to describe a distribution’s symmetry. As you might expect, symmetric distributions are shaped the same on either side of the center. (Another way of thinking about this is that if you folded the distribution at the center, the folded half of the distribution would align pretty well on top of the other half.) For example, “bell-shaped” (“approximately normal”) distributions are symmetric.</p>
-<p>When a distribution is asymmetric, it is referred to as a <strong>skewed</strong> distribution. The distribution shown in Figure 1 is a skewed distribution. In this distribution, there appears to be a longer tail on the right side of the distribution. Because the tail is on the right side of the distribution, statisticians would say it is “skewed to the right” or “positively skewed”. In a similar way, a distribution that tails to the left is “skewed to the left” or “negatively skewed”.</p>
-<p><br /></p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
-<img src="img/skewed-right.png" alt="This distribution is skewed to the right, or positively skewed." width="50%" />
-<p class="caption">
-Figure 1: This distribution is skewed to the right, or positively skewed.
-</p>
-</div>
-<p><br /></p>
-</div>
-<div id="location" class="section level3 unnumbered">
-<h3>Location</h3>
-<p>Aside from the overall shape of the distribution, it is also useful to summarize the location of the distribution. The location of the distribution provides a summarization of a so-called “typical” value for the data. A “typical” value can be estimated from the plot of the distribution. You can also use more formally calculated summaries of the location such as the mean, median, or mode. These values are easily calculated using TinkerPlots™.</p>
-<p>When looking at a plot of a distribution, data analysts often consider the number of modes or “humps” that are seen in a plot of the distribution. Here, the concept of mode is slightly different (although related) to the concept of mode that you may have learned in previous mathematics or statistics courses. The mode of a distribution gives a general sense of the values or measurements that occur frequently. This may be a single number, but many times is not. For example, the first hump of the distribution shown in the figure below suggests that values around nine are very common. The actual value of nine, however, may only show up once or twice in the data.</p>
-<p><br /></p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
-<img src="img/bimodal.png" alt="A bimodal distribution showing two modes. One mode is around 9, and the other is near 12." width="50%" />
-<p class="caption">
-Figure 2: A bimodal distribution showing two modes. One mode is around 9, and the other is near 12.
-</p>
-</div>
-<p><br /></p>
-<p>A distribution can be <strong>unimodal</strong> (one mode), <strong>bimodal</strong> (two modes), <strong>multimodal</strong> (many modes), or <strong>uniform</strong> (no modes). The distribution shown above is bimodal—notice there are two humps. Uniform distributions have roughly the same frequency for all possible values (they look essentially flat) and thus have no modes.</p>
-</div>
-<div id="variation" class="section level3 unnumbered">
-<h3>Variation</h3>
-<p>A third characteristic of a distribution that should be summarized is the variation. Summarizing the variation gives an indication of how variable the data are. One method of numerically summarizing the variability in the data is to quantify how close the observations are relative to the “typical” value on average. Are the observations for the most part close to the “typical” value? Far away from the “typical” value? How close?</p>
-<p>It turns out, that the shape of the distribution also helps describe the variation in the data. For example, “bell-shaped” distributions have most observations close to the “typical” value, and more extreme observations show up both below and above the “typical” value (the variation is the same on both sides of the “typical” value). Whereas skewed distributions have many observations near the “typical” value, but extreme values only deviate from this value in one direction (there is more variation in the data on one side of the “typical” value than the other).</p>
-<p><br /></p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7"></span>
-<img src="img/skewed-right.png" alt="Most of the observations in this distribution are clustered between 0 and 2. There are some observations greater than 2 (up to 10), although these are rare." width="50%" />
-<p class="caption">
-Figure 3: Most of the observations in this distribution are clustered between 0 and 2. There are some observations greater than 2 (up to 10), although these are rare.
-</p>
-</div>
-<p><br /></p>
-<p>One thing that affects the variation, and should be described is whether there are observations that stand out from the other observations. Often these observations have extremely large or small values relative to the other observations. These observations are referred to as <strong>potential outliers</strong>, or <strong>extreme cases</strong>. For example, in the positively skewed distribution shown previously, the observation that has a value near 10 would likely be considered a potential outlier.</p>
-</div>
-<div id="putting-it-all-together" class="section level3 unnumbered">
-<h3>Putting It All Together</h3>
-<p><a href="https://www.rottentomatoes.com/">Rotten Tomatoes</a> is a website which aggregates movie critics’ reviews of films. The website marks each review as either positive or negative and then gives the film a score based on the percentage of positive reviews. In addition to the critics’ score, each film is also given a score based on reviews from the general public using the same methodology (reviews are tabulated so that the score represents the percentage of positive reviews from the general public). The plot shown below shows a dot plot of the distribution of the general public’s scores for 134 movies released in 2009.</p>
-<p><br /></p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
-<img src="img/rotton-tomatoes.png" alt="The scores for 134 movies released in 2009 based on the general public’s reviews. The scores represent the percentage of positive reviews for each movie." width="50%" />
-<p class="caption">
-Figure 4: The scores for 134 movies released in 2009 based on the general public’s reviews. The scores represent the percentage of positive reviews for each movie.
-</p>
-</div>
-<p><br /></p>
-<p>A written description of the distribution might read as follows:</p>
+<div id="modeling-sampling-variation" class="section level1 unnumbered">
+<h1>Modeling Sampling Variation</h1>
+<p>In the course activities and homework assignments, you have been using probability models to generate random outcomes. You have also learned how to use Monte Carlo simulation to generate many data sets from a given model. This is the same kind of process that researchers, scientists, and statisticians engage in when they evaluate (or test) hypotheses about the world.</p>
+<p>To illustrate the ideas behind statistical hypothesis testing, consider how you might go about testing a coin for “fairness”. You might have suggested something along the lines of “flip the coin many times and keep track of the number of heads and tails”. Suppose you tossed the coin 100 times, which resulted in 53 heads and 47 tails. Would you say the coin is “unfair”? What if you had obtained 65 heads and 35 tails instead? Now would you say the coin is “unfair”? How about if you had gotten 84 heads and only 16 tails?</p>
+<p>The first result of 53 heads and 47 tails probably did not seem that far fetched to you, and you probably would feel at ease saying that the coin that produced such a result is most likely “fair”. On the other hand, the results of 65 heads and 35 tails—and especially 84 heads and 16 tails—likely made you feel uncomfortable about declaring the coin “fair”.</p>
+<p>Why is this? It is because you had a mental model of the distribution of heads and tails that you expect when the coin actually IS “fair”. If the observed result of the 100 coin flips is compatible with the model of a “fair” coin, you might conclude that the coin is “fair”. For example, the result of 53 heads from 100 flips is very close to the 50:50 split of heads and tails, and it is probably safe to say that a “fair” coin could have produced the set of flips in question. In this case, the data are compatible with the model of “fairness”.</p>
+<p>If the observed result deviates from what is expected under the model of a “fair” coin, for example the two results of 65 heads and 84 heads, you might end up rejecting the hypothesis that the coin was “fair”. In these two cases, the data are incompatible (or at least far less compatible) with the model of “fairness”.</p>
+<p>One thing you may have realized is that we expect variation in the results just because of chance (randomness). Even if the coin really was “fair”, we do not expect exactly 50 heads every time we carry out 100 flips of the coin. This variation in the number of heads we get each time we carry out 100 flips of the coin is referred to as <strong>sampling variation</strong>; it is the variation that arises because we are generating different samples from the model (or population).</p>
+<p>Knowing something about how much sampling variation is expected is how we can judge whether data are compatible or incompatible with the model; it is why you feel 53 heads would be compatible with a “fair” coin, but 65 heads feels less compatible with that model, and 84 heads even less so. Luckily, we can get an indication of how much sampling variation is expected using Monte Carlo simulation.</p>
+<div id="simulation-process-for-evaluating-hypotheses" class="section level3 unnumbered">
+<h3>Simulation Process for Evaluating Hypotheses</h3>
+<p>The process we will use for evaluating a hypothesis is:</p>
+<ol style="list-style-type: decimal">
+<li>Create a model that conforms to the hypothesis to be evaluated.</li>
+<li>Use the selected model to generate many, many sets of data (Monte Carlo simulation). The results you collect and pool together from these trials will give a picture of the variation you would expect under the hypothesized model.</li>
+<li>Evaluate whether the results observed in the actual data (not the simulated data) are compatible with the expected results produced from the model. This acts as evidence of support (or nonsupport) for the hypothesis.</li>
+</ol>
+<p>To help you remember this process, you can use the more simplistic mnemonic:</p>
+<ul>
+<li>Model</li>
+<li>Simulate</li>
+<li>Evaluate</li>
+</ul>
+<p>This may sound like a straight-forward process, but in practice it can actually be quite complex—especially as you are reading research articles and trying to interpret the findings. First off, the model that is selected is often not provided, nor described, explicitly within most research articles. It is often left to the reader to figure out what the assumed model was. At first, this may be quite difficult, but like most tasks, as you gain experience in this course and as you read more research, you find that there are a common set of models that are typically used by researchers.</p>
+<p>The model that you use in the Monte Carlo simulation is directly related to the hypothesis you make about a research question. Often researchers explicitly state hypotheses about their research questions. Hypotheses are simply statements of possible explanations for an observed set of data. For example, one possible explanation for the observed set of coin flips is:</p>
 <blockquote>
-<p>The distribution of scores for this sample of 134 movies is fairly symmetric. The median score for these movies is near 60, indicating that a typical movie released in 2009 is positively reviewed by about 60% of the public. The distribution also indicates that there is variation in the movies’ scores. Most of the movies in the sample have a score between 35 and 85, suggesting large differences in the public’s opinion of the quality of these movies.</p>
+<p>The coin used to generate the set of observed coin flips is a “fair” coin; which would produce (in the long run) a uniform distribution of heads and tails.</p>
 </blockquote>
-<p>Notice that the description includes a description of the distribution’s shape, location, and variation. It also incorporates the context of the data, in this case film scores. This helps a reader to interpret the description.</p>
+<p>One complication that you may encounter is that many statisticians and researchers write their hypotheses mathematically. The advantage to writing a hypothesis mathematically is that it explicitly defines the model that will be used in the Monte Carlo simulation. Consider the stated hypothesis that the coin used to generate the set of observed coin flips is a “fair” coin that produces a uniform distribution of heads and tails. Recall that producing a uniform distribution of heads and tails means that heads and tails are equally likely under this model (i.e., a 50:50 split). We could express this hypothesis more mathematically as:</p>
+<blockquote>
+<p>The model produces heads (and tails) with a probability of 0.5.</p>
+</blockquote>
+<p>In this hypothesis, we are establishing that the model we are evaluating generates heads (and tails) with a probability of 0.5. Notice how the model is completely defined using the mathematical notation. The hypothesis states that the model has two potential outcomes (heads and tails), and the probability of each is 0.5. Pretty cool, huh?</p>
+</div>
+<div id="outline-and-goals-of-unit-2" class="section level3 unnumbered">
+<h3>Outline and Goals of Unit 2</h3>
+<p>In the readings, course activities, and assignments in Unit 2, you will explore the process of evaluating statistical hypotheses. You will be introduced to several common models that used by researchers and statisticians. You will also use TinkerPlots™ to generate simulated data to study the variation in results that would be expected under these models. Many of these models are directly related to the chance models that you have explored in the course to this point. For example, you should already be able to use TinkerPlots™ to produce results that would be expected from 100 flips of a “fair” coin.</p>
+<p>Aside from learning about some of the more common models used in research, you will also learn how to describe and formally quantify the variation in a distribution. This is helpful as we evaluate whether a particular result in observed data is compatible with results produced from the given model. Lastly, you will learn about common misconceptions regarding model evaluation (e.g., we can never say a model produced the data, only that it produces results compatible with the data), and how to use probabilistic language when providing an “answer” to a research question.</p>
 
 </div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="9">
-<li id="fn9"><p>TinkerPlots™ also provides other types of plots, including the box plot (sometimes called the box-and-whiskers plot) and the hat plot (a variation of the box plot).<a href="describing-distributions.html#fnref9" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="modeling-sampling-variation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="experimental-variation-and-the-randomization-test.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="monte-carlo-simulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="describing-distributions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -300,6 +268,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
@@ -307,20 +279,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
