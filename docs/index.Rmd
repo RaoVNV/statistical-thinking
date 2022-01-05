@@ -26,9 +26,10 @@ knitr::include_graphics("img/catalst-textbook-cover-v4_3.png")
 
 <br />
 
-This website is intended to serve as an organizational hub for the following course: 
+This website is intended to serve as an organizational hub for the following sections of University of Minnesota's EPSY 3264 - Basic and Applied Statistics: 
 
-- University of Minnesota, Spring 2022, EPSY 3264, Section 002
+- Spring 2022 Section 002 (Vimal Rao)
+- Spring 2022 Section 003 (Regina Lisinker)
 
 This website is based on the most current version of the CATALST Project's *Statistical Thinking: A Simulation Approach to Modeling Uncertainty*. Here you will be able to access materials such as readings, data sets, and the lab manual. The website also includes helpful links and resources for each of the course topics.
 
@@ -38,7 +39,7 @@ The resources that accompany this website include:
 
 - A lab manual [PDF copy available here](https://github.com/RaoVNV/statistical-thinking/blob/master/statistical-thinking-v4_3_Rao.pdf?raw=true)
 - Data sets used in the lab manual:
-  + [TinkerPlots 3 Data Files](https://github.com/zief0002/statistical-thinking/blob/master/tp3-data.zip?raw=true)
+  + [TinkerPlots 3 Data Files](https://github.com/RaoVNV/statistical-thinking/blob/master/tp3-data.zip?raw=true)
 
 
 You can read more about these resources in the introduction.

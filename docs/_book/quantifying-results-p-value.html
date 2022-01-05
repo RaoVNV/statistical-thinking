@@ -131,6 +131,7 @@ $(document).ready(function()
 <li class="chapter" data-level="" data-path="quantifying-results-p-value.html"><a href="quantifying-results-p-value.html#adjustment-for-simulation-results"><i class="fa fa-check"></i>Adjustment for Simulation Results</a></li>
 <li class="chapter" data-level="" data-path="quantifying-results-p-value.html"><a href="quantifying-results-p-value.html#p-values-as-evidence"><i class="fa fa-check"></i>p-Values as Evidence</a></li>
 <li class="chapter" data-level="" data-path="quantifying-results-p-value.html"><a href="quantifying-results-p-value.html#six-principles-about-p-values"><i class="fa fa-check"></i>Six Principles about p-Values</a></li>
+<li class="chapter" data-level="" data-path="quantifying-results-p-value.html"><a href="quantifying-results-p-value.html#guidelines-for-interpreting-p-values"><i class="fa fa-check"></i>Guidelines for interpreting p-Values</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="internal-validity-evidence-and-random-assignment.html"><a href="internal-validity-evidence-and-random-assignment.html"><i class="fa fa-check"></i>Internal Validity Evidence and Random Assignment</a></li>
 <li class="chapter" data-level="" data-path="sampling-variation-and-the-bootstrap-test.html"><a href="sampling-variation-and-the-bootstrap-test.html"><i class="fa fa-check"></i>Sampling Variation and the Bootstrap Test</a>
@@ -180,12 +181,12 @@ $(document).ready(function()
             <section class="normal" id="section-">
 <div id="quantifying-results-p-value" class="section level1 unnumbered">
 <h1>Quantifying Results: p-Value</h1>
-<p>In addition to computing the range of likely results from the model, statisticians also typically provide a quantification of the likelihood of the observed result given the hypothesized model. This quantification is referred to as a <span class="math inline">\(p\)</span>-value (the <span class="math inline">\(p\)</span> stands for probability).</p>
+<p>In addition to computing the range of likely results from the model, statisticians also typically provide a quantification of the consistency between the observed result and the expectations based on the model. This quantification is referred to as a <span class="math inline">\(p\)</span>-value (the <span class="math inline">\(p\)</span> stands for probability).</p>
 <p>To compute a <span class="math inline">\(p\)</span>-value, you count the number of results that are at least as extreme as the observed result, and divide this by the total number of results.</p>
 <p><span class="math display">\[
 p = \frac{\mathrm{number~of~results~at~least~as~extreme~as~observed~result}}{\mathrm{total~number~of~simulated~results}}
 \]</span></p>
-<p>This value is then reported as a decimal value. It quantifies the probability of observing a result at least as extreme as the observed result under the hypothesized model.</p>
+<p>This value is then reported as a decimal value. It quantifies the probability of observing a result at least as extreme as the observed result under the hypothesized model. It is often interpreted as the likelihood of the observed result given the hypothesized model.</p>
 <p>To illustrate this, we will re-examine simulation results from the <em>Sleep Deprivation</em> study. Recall in that activity, the observed data had a difference in means of 15.9. Below is a plot of 100 differences in means simulated under the “no-effect”” model. A vertical line is shown at the observed difference of 15.9.</p>
 <p><img src="img/sleep-deprivation-simulation.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Since 15.9 is to the right of 0 (i.e., it is on the right-hand side of the plot) results that are <em>more extreme than the observed result</em> are to the right of 15.9. (If the observed result was to the left of 0, more extreme results would be those more negative than the observed result.) Here there are two simulated results out of 100 that are at least as extreme as 15.9 (<span class="math inline">\(\geq 15.9\)</span>). We would report the <span class="math inline">\(p\)</span>-value as 0.02.</p>
@@ -195,25 +196,25 @@ p = \frac{\mathrm{number~of~results~at~least~as~extreme~as~observed~result}}{\ma
 <p><span class="math display">\[
 p = \frac{\mathrm{number~of~results~more~extreme~than~observed} + 1}{\mathrm{total~number~of~simulated~results} + 1}
 \]</span></p>
-<p>This adjustment assures that we never get a <span class="math inline">\(p\)</span>-value of 0. Consider the <span class="math inline">\(p\)</span>-value if our observed result would have been 18 (instead of 15.9). There are 0 results that are at least as extreme as 18 (<span class="math inline">\(\geq 18\)</span>). Without making the simulation adjustment, we would report a <span class="math inline">\(p\)</span>-value of 0. This implies that seeing a result at least as extreme as 18 under the “no-effect” model is impossible. The problem is that we only ran 100 trials of the simulation. If we had run this simulation for all possible randomizations of the data, we would have seen results <span class="math inline">\(\geq 18\)</span>. So, to report a <span class="math inline">\(p\)</span>-value of 0 is misleading. The <span class="math inline">\(p\)</span>-value we report should be,</p>
+<p>This adjustment assures that we never get a <span class="math inline">\(p\)</span>-value of 0. Consider the <span class="math inline">\(p\)</span>-value if our observed result would have been 18 (instead of 15.9). There are 0 results that are at least as extreme as 18 (<span class="math inline">\(\geq 18\)</span>). The problem is that we only ran 100 trials of the simulation. If we had run this simulation for all possible randomizations of the data (i.e., infinitely many times), we would have seen results <span class="math inline">\(\geq 18\)</span>. So, to report a <span class="math inline">\(p\)</span>-value of 0 is misleading. The <span class="math inline">\(p\)</span>-value we report should be,</p>
 <p><span class="math display">\[
 p = \frac{0 + 1}{100 + 1} = 0.0099
 \]</span></p>
-<p>After the adjustment, the <span class="math inline">\(p\)</span>-value is still quite small, indicating that had we seen an observed result of 18, we would say that it is inconsistent with the model of “no-effect”. In fact it is in the outer 0.01 (1%) of the results simulated from the hypothesized model.</p>
+<p>After the adjustment, the <span class="math inline">\(p\)</span>-value is still quite small, indicating that had we seen an observed result of 18, we would say that it is not consistent with the model of “no-effect”. In fact it is in the outer 0.01 (1%) of the results simulated from the hypothesized model.</p>
 <p>Going back to the <span class="math inline">\(p\)</span>-value computed from the observed value of 15.9,</p>
 <p><span class="math display">\[
 p = \frac{2 + 1}{100 + 1} = 0.0297
 \]</span></p>
-<p>We can interpret the <span class="math inline">\(p\)</span>-value of 0.030 as indicating that the observed difference of 15.9 is in the outer 0.03 (3%) of results simulated from the hypothesized model. It is quite unlikely that we would see a result as extreme as 15.9, or more extreme, under the hypothesized model of “no effect”.</p>
+<p>We can interpret the <span class="math inline">\(p\)</span>-value of 0.030 as indicating that the observed difference of 15.9 is in the outer 0.03 (3%) of results simulated from the hypothesized model. It is quite unlikely that we would see a result as extreme as 15.9, or more extreme, under the hypothesized model of “no effect”. Thus, this observation is not consistent with our expectations based on the hypothesized model.</p>
 </div>
 <div id="p-values-as-evidence" class="section level3 unnumbered">
 <h3>p-Values as Evidence</h3>
-<p>Large <span class="math inline">\(p\)</span>-values indicate that the observed data are more compatible with the results from the model, while small <span class="math inline">\(p\)</span>-values indicate that the observed data are not very compatible with the results from the model. As researchers, our goal is often to then translate this quantitative evidence into support for the hypothesized model. For example, in the <em>Sleep Deprivation</em> study, we obtained a <span class="math inline">\(p\)</span>-value of 0.03. This suggests a low degree of compatibility between the observed data (our empirical evidence) and the hypothesized model of “no effect”.</p>
+<p>Large <span class="math inline">\(p\)</span>-values indicate that the observed data are more consistent with the results from the model, while small <span class="math inline">\(p\)</span>-values indicate that the observed data are not very consistent with the results from the model. As researchers, our goal is often to then translate this quantitative evidence into support for or against the hypothesized model. For example, in the <em>Sleep Deprivation</em> study, we obtained a <span class="math inline">\(p\)</span>-value of 0.03. This suggests a low degree of consistency between the observed data (our empirical evidence) and the hypothesized model of “no effect”.</p>
 <p>The broader scientific question about whether sleep deprivation has a harmful effect on learning, however is difficult to ascertain from a <span class="math inline">\(p\)</span>-value. There are no hard-and-fast rules for gauging how strong the evidence is against the hypothesized model because what counts as evidence in one scientific discipline or context may not count in another scientific discipline or context. And, even if there were rules about the degree of evidence needed, you would still need to evaluate other criteria such as internal and external validity evidence, and sample size. Even then, the results from a single study are not typically convincing enough for most scientists to draw definitive conclusions. It is only through consistent findings that emerge from multiple studies (which may take decades) that we may have convincing evidence about the answer to the broader scientific question.</p>
 </div>
 <div id="six-principles-about-p-values" class="section level3 unnumbered">
 <h3>Six Principles about p-Values</h3>
-<p>Because they are so ubiquitous in the research literature for any field, and because they are often mis-interpreted (even by PhDs, researchers, and math teachers) it is important to be aware of what a <span class="math inline">\(p\)</span>-value tells you, and more importantly, what it doesn’t tell you. To this end, the American Statistical Association released a <a href="http://amstat.tandfonline.com/doi/abs/10.1080/00031305.2016.1154108#.Vt2XIOaE2MN">statement on <span class="math inline">\(p\)</span>-values</a> in which it listed six principles:<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
+<p>Because they are so ubiquitous in the research literature for any field, and because they are often mis-interpreted (even by PhDs, researchers, and math teachers) it is important to be aware of what a <span class="math inline">\(p\)</span>-value tells you, and more importantly, what it doesn’t tell you. To this end, the American Statistical Association released a <a href="http://amstat.tandfonline.com/doi/abs/10.1080/00031305.2016.1154108#.Vt2XIOaE2MN">statement on <span class="math inline">\(p\)</span>-values</a> in which it listed six principles:<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
 <ul>
 <li><strong>Principle 1:</strong> <span class="math inline">\(P\)</span>-values can indicate how incompatible the data are with a specified statistical model.</li>
 <li><strong>Principle 2:</strong> <span class="math inline">\(P\)</span>-values do not measure the probability that the studied hypothesis is true, or the probability that the data were produced by random chance alone.</li>
@@ -226,13 +227,29 @@ p = \frac{2 + 1}{100 + 1} = 0.0297
 <!-- <center> -->
 <!-- ![](https://imgs.xkcd.com/comics/p_values.png) -->
 <!-- </center> -->
+</div>
+<div id="guidelines-for-interpreting-p-values" class="section level3 unnumbered">
+<h3>Guidelines for interpreting p-Values</h3>
+<p>Even though you should never interpret <span class="math inline">\(p\)</span>-values against a fixed criteria, a good benchmark to help get a feel for how to interpret them in terms of consistency with a hypothesis are as follows:</p>
+<ul>
+<li>A <span class="math inline">\(p\)</span>-value of less than .03 is often seen as an indication that the observed data is not consistent with the hypothesis.</li>
+<li>A <span class="math inline">\(p\)</span>-value greater .03 but less than .08 is often seen as an indication that the observed data is only slightly consistent with the hypothesis.</li>
+<li>A <span class="math inline">\(p\)</span>-value greater than .08 is often seen as an indication that that is relatively consistent with the hypothesis.</li>
+</ul>
+<p>What do we do when we have seen observed some data that is not consistent with a hypothesis that we considered? We can not ignore the fact that we have observed something from the real world. One possibility is that the hypothesis is correct, but something else affected the study that we did not account for in our analysis. Another possibility is that the hypothesis is not correct. Scientists often focus on this second possibility, and interpret <span class="math inline">\(p\)</span>-values in terms of how strongly they support the claim that the hypothesis is not correct. Re-interpreting the benchmark <span class="math inline">\(p\)</span>-values above in this way suggests:</p>
+<ul>
+<li>A <span class="math inline">\(p\)</span>-value of less than .03 is often seen as strong evidence against a hypothesis.</li>
+<li>A <span class="math inline">\(p\)</span>-value greater .03 but less than .08 is often seen as indeterminate evidence against a hypothesis.</li>
+<li>A <span class="math inline">\(p\)</span>-value greater than .08 is often seen as very weak evidence against a hypothesis.</li>
+</ul>
+<p>While you can use these benchmarks to help you get a feel for interpreting <span class="math inline">\(p\)</span>-values, be sure to remember Principle #3 from above – Scientific conclusions and business or policy decisions should not be based only on whether a <span class="math inline">\(p\)</span>-value passes a specific threshold. These thresholds are only a guideline, but they are no substitute for being thoughtful and considering other aspects of the study and associated theories.</p>
 
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="11">
-<li id="fn11"><p>Yaddanapudi (2016) <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5187603/">published a paper</a> in the <em>Journal of Anaesthesiology, Clinical Pharmacology</em> in which she explains each of these six principles for practicing physician-scientists using an example of treatment efficacy for a drug.<a href="quantifying-results-p-value.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<ol start="4">
+<li id="fn4"><p>Yaddanapudi (2016) <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5187603/">published a paper</a> in the <em>Journal of Anaesthesiology, Clinical Pharmacology</em> in which she explains each of these six principles for practicing physician-scientists using an example of treatment efficacy for a drug.<a href="quantifying-results-p-value.html#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
